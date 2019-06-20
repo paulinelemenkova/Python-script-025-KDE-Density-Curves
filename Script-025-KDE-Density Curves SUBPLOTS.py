@@ -4,19 +4,18 @@ import os
 import pandas as pd
 from matplotlib import pyplot as plt
 import matplotlib.artist as martist
-from mpl_toolkits.axes_grid.axes_grid import AxesGrid
-from mpl_toolkits.axes_grid.anchored_artists import AnchoredText
+from matplotlib.offsetbox import AnchoredText
 import seaborn as sns
 
 os.chdir('/Users/pauline/Documents/Python')
 df = pd.read_csv("Tab-Bathy.csv")
 dfM = pd.read_csv("Tab-Morph.csv")
 sns.set_style('darkgrid')
-sns.set_context("paper")
+sns.set_context('paper')
 
 fig = plt.figure(figsize=(10.0, 6.0), dpi=300)
 fig.suptitle('Kernel Density Esimation: probability of depth ranges',
-             fontsize=10, fontweight='bold', x=0.5, y=0.99)
+             fontsize=10, fontweight='bold', x=0.5, y=0.97)
 
 def add_at(ax, t, loc=2):
     fp = dict(size=11)
