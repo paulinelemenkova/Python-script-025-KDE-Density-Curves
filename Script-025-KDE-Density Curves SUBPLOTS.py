@@ -1,24 +1,29 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[5]:
-
-
-import seaborn as sns
-from matplotlib import pyplot as plt
-import pandas as pd
 import os
-#
+import pandas as pd
+from matplotlib import pyplot as plt
+import matplotlib.artist as martist
+from mpl_toolkits.axes_grid.axes_grid import AxesGrid
+from mpl_toolkits.axes_grid.anchored_artists import AnchoredText
+import seaborn as sns
+
 os.chdir('/Users/pauline/Documents/Python')
 df = pd.read_csv("Tab-Bathy.csv")
 dfM = pd.read_csv("Tab-Morph.csv")
 sns.set_style('darkgrid')
 sns.set_context("paper")
-#
+
 fig = plt.figure(figsize=(10.0, 6.0), dpi=300)
 fig.suptitle('Kernel Density Esimation: probability of depth ranges',
-            fontsize=10, fontweight='bold', x=0.5, y=0.99)
-#
+             fontsize=10, fontweight='bold', x=0.5, y=0.99)
+
+def add_at(ax, t, loc=2):
+    fp = dict(size=11)
+    _at = AnchoredText(t, loc=loc, prop=fp)
+    ax.add_artist(_at)
+    return _at
+
 # subplot 1
 ax = fig.add_subplot(231)
 ax=sns.kdeplot(df['profile1'], shade=True, color="r")
@@ -31,9 +36,9 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 1-5", fontsize=9, fontfamily='serif')
-ax.annotate('A', xy=(0.03, .90), xycoords="axes fraction", fontsize=12,
-           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
-#
+add_at(ax, "A", loc=2)
+
+
 # subplot 2
 ax = fig.add_subplot(232)
 ax=sns.kdeplot(df['profile6'], shade=True, color="r")
@@ -46,9 +51,8 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 6-10", fontsize=9, fontfamily='serif')
-ax.annotate('B', xy=(0.03, .90), xycoords="axes fraction", fontsize=12,
-           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
-#
+add_at(ax, "B", loc=2)
+
 # subplot 3
 ax = fig.add_subplot(233)
 ax=sns.kdeplot(df['profile11'], shade=True, color="r")
@@ -61,9 +65,8 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 11-15", fontsize=9, fontfamily='serif')
-ax.annotate('C', xy=(0.03, .90), xycoords="axes fraction", fontsize=12,
-           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
-#
+add_at(ax, "C", loc=2)
+
 # subplot 4
 ax = fig.add_subplot(234)
 ax=sns.kdeplot(df['profile16'], shade=True, color="r")
@@ -76,9 +79,8 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 16-20", fontsize=9, fontfamily='serif')
-ax.annotate('D', xy=(0.03, .90), xycoords="axes fraction", fontsize=12,
-           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
-#
+add_at(ax, "D", loc=2)
+
 # subplot 5
 ax = fig.add_subplot(235)
 ax=sns.kdeplot(df['profile21'], shade=True, color="r")
@@ -91,9 +93,8 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 21-25")
-ax.annotate('E', xy=(0.03, .90), xycoords="axes fraction", fontsize=12,
-           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
-#
+add_at(ax, "E", loc=2)
+
 # subplot 6
 ax = fig.add_subplot(236)
 ax=sns.kdeplot(dfM['Min'], shade=True, color="r")
@@ -106,16 +107,13 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("bathymetric depth ranges, profiles 1-25")
-ax.annotate('F', xy=(0.03, .90), xycoords="axes fraction", fontsize=12,
-           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
-#
+add_at(ax, "F", loc=2)
+
+# visualizing and saving
 plt.tight_layout()
-fig.savefig('plot_KDE.png', dpi=300)
+plt.subplots_adjust(top=0.90, bottom=0.08,
+                    left=0.10, right=0.95,
+                    hspace=0.25, wspace=0.35
+                    )
+plt.savefig('plot_KDE.png', dpi=300)
 plt.show()
-
-
-# In[ ]:
-
-
-
-
