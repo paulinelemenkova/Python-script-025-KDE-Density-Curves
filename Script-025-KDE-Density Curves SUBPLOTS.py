@@ -11,11 +11,11 @@ os.chdir('/Users/pauline/Documents/Python')
 df = pd.read_csv("Tab-Bathy.csv")
 dfM = pd.read_csv("Tab-Morph.csv")
 sns.set_style('darkgrid')
-sns.set_context('paper')
+sns.set_context("paper")
 
 fig = plt.figure(figsize=(10.0, 6.0), dpi=300)
-fig.suptitle('Kernel Density Esimation: probability of depth ranges',
-             fontsize=10, fontweight='bold', x=0.5, y=0.97)
+fig.suptitle('Kernel Density Esimation: probability of the depth ranges',
+             fontsize=10, fontweight='bold', x=0.5, y=0.99)
 
 def add_at(ax, t, loc=2):
     fp = dict(size=11)
@@ -35,7 +35,7 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 1-5", fontsize=9, fontfamily='serif')
-add_at(ax, "A", loc=2)
+add_at(ax, "A")
 
 
 # subplot 2
@@ -50,7 +50,7 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 6-10", fontsize=9, fontfamily='serif')
-add_at(ax, "B", loc=2)
+add_at(ax, "B")
 
 # subplot 3
 ax = fig.add_subplot(233)
@@ -64,7 +64,7 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 11-15", fontsize=9, fontfamily='serif')
-add_at(ax, "C", loc=2)
+add_at(ax, "C")
 
 # subplot 4
 ax = fig.add_subplot(234)
@@ -78,7 +78,7 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 16-20", fontsize=9, fontfamily='serif')
-add_at(ax, "D", loc=2)
+add_at(ax, "D")
 
 # subplot 5
 ax = fig.add_subplot(235)
@@ -92,7 +92,7 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("profiles 21-25")
-add_at(ax, "E", loc=2)
+add_at(ax, "E")
 
 # subplot 6
 ax = fig.add_subplot(236)
@@ -106,7 +106,7 @@ ax.legend(loc='upper right', fontsize=6)
 ax.tick_params(axis='x', labelsize=7)
 ax.tick_params(axis='y', labelsize=7)
 plt.title("bathymetric depth ranges, profiles 1-25")
-add_at(ax, "F", loc=2)
+add_at(ax, "F")
 
 # visualizing and saving
 plt.tight_layout()
